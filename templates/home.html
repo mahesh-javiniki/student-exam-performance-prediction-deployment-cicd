@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Exam Performance Indicator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: 'Roboto', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #2980b9 0%, #6dd5fa 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        }
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .hero {
+            background: linear-gradient(90deg, #6dd5fa 0%, #2980b9 100%);
+            color: #fff;
+            padding: 48px 0 32px 0;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .main-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.12);
+            padding: 36px 32px 28px 32px;
+        }
+        .main-card legend {
+            font-size: 1.3rem;
+            color: #2980b9;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #34495e;
+            margin-bottom: 8px;
+        }
+        .form-label i {
+            margin-right: 6px;
+            color: #2980b9;
+        }
+        .form-select, .form-control {
+            border-radius: 8px;
+            border: 1.5px solid #d1d5db;
+            padding: 10px 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-select:focus, .form-control:focus {
+            border-color: #2980b9;
+            box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+            outline: none;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #2980b9 0%, #6dd5fa 100%);
+            border: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(44,62,80,0.15);
+            padding: 14px;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #6dd5fa 0%, #2980b9 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44,62,80,0.25);
+        }
+        .result-box {
+            margin-top: 28px;
+            padding: 24px;
+            background: linear-gradient(135deg, #f6ffed 0%, #e8f5e9 100%);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #27ae60;
+            border: 2px solid #b7eb8f;
+            box-shadow: 0 4px 12px rgba(39,174,96,0.12);
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .main-card label, .main-card select, .main-card input {
+            font-size: 1rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 24px 0 12px 0;
+            color: #888;
+            font-size: 1rem;
+            background: none;
+        }
+        .footer a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .main-card {
+                padding: 24px 20px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .navbar-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Student Performance Predictor</span>
+            </a>
+            <a href="/" class="nav-link">
+                <i class="fa-solid fa-home"></i> Home
+            </a>
+        </div>
+    </div>
+    
+    <div class="hero">
+        <i class="fa-solid fa-chart-line fa-3x mb-3"></i>
+        <h1>Predict Math Score</h1>
+        <p>Enter student information to get accurate performance predictions</p>
+    </div>
+    
+    <div class="main-content">
+        <div class="main-card">
+            <form action="{{ url_for('predict_datapoint')}}" method="post" autocomplete="off">
+                <legend><i class="fa-solid fa-calculator"></i> Performance Prediction Form</legend>
+            <div class="mb-3">
+                <label class="form-label" for="gender"><i class="fa-solid fa-venus-mars"></i> Gender</label>
+                <select class="form-select" name="gender" id="gender" required>
+                    <option disabled value="" {% if not request.form.get('gender') %}selected{% endif %}>Select your Gender</option>
+                    <option value="male" {% if request.form.get('gender') == 'male' %}selected{% endif %}>Male</option>
+                    <option value="female" {% if request.form.get('gender') == 'female' %}selected{% endif %}>Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="ethnicity"><i class="fa-solid fa-users"></i> Race or Ethnicity</label>
+                <select class="form-select" name="ethnicity" id="ethnicity" required>
+                    <option disabled value="" {% if not request.form.get('ethnicity') %}selected{% endif %}>Select Ethnicity</option>
+                    <option value="group A" {% if request.form.get('ethnicity') == "group A" %}selected{% endif %}>Group A</option>
+                    <option value="group B" {% if request.form.get('ethnicity') == "group B" %}selected{% endif %}>Group B</option>
+                    <option value="group C" {% if request.form.get('ethnicity') == "group C" %}selected{% endif %}>Group C</option>
+                    <option value="group D" {% if request.form.get('ethnicity') == "group D" %}selected{% endif %}>Group D</option>
+                    <option value="group E" {% if request.form.get('ethnicity') == "group E" %}selected{% endif %}>Group E</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="parental_level_of_education"><i class="fa-solid fa-user-graduate"></i> Parental Level of Education</label>
+                <select class="form-select" name="parental_level_of_education" id="parental_level_of_education" required>
+                    <option disabled value="" {% if not request.form.get('parental_level_of_education') %}selected{% endif %}>Select Parent Education</option>
+                    <option value="associate's degree" {% if request.form.get('parental_level_of_education') == "associate's degree" %}selected{% endif %}>Associate's degree</option>
+                    <option value="bachelor's degree" {% if request.form.get('parental_level_of_education') == "bachelor's degree" %}selected{% endif %}>Bachelor's degree</option>
+                    <option value="high school" {% if request.form.get('parental_level_of_education') == "high school" %}selected{% endif %}>High school</option>
+                    <option value="master's degree" {% if request.form.get('parental_level_of_education') == "master's degree" %}selected{% endif %}>Master's degree</option>
+                    <option value="some college" {% if request.form.get('parental_level_of_education') == "some college" %}selected{% endif %}>Some college</option>
+                    <option value="some high school" {% if request.form.get('parental_level_of_education') == "some high school" %}selected{% endif %}>Some high school</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="lunch"><i class="fa-solid fa-utensils"></i> Lunch Type</label>
+                <select class="form-select" name="lunch" id="lunch" required>
+                    <option disabled value="" {% if not request.form.get('lunch') %}selected{% endif %}>Select Lunch Type</option>
+                    <option value="free/reduced" {% if request.form.get('lunch') == "free/reduced" %}selected{% endif %}>Free/reduced</option>
+                    <option value="standard" {% if request.form.get('lunch') == "standard" %}selected{% endif %}>Standard</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="test_preparation_course"><i class="fa-solid fa-book-open-reader"></i> Test Preparation Course</label>
+                <select class="form-select" name="test_preparation_course" id="test_preparation_course" required>
+                    <option disabled value="" {% if not request.form.get('test_preparation_course') %}selected{% endif %}>Select Test Course</option>
+                    <option value="none" {% if request.form.get('test_preparation_course') == "none" %}selected{% endif %}>None</option>
+                    <option value="completed" {% if request.form.get('test_preparation_course') == "completed" %}selected{% endif %}>Completed</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="writing_score"><i class="fa-solid fa-pen"></i> Writing Score out of 100</label>
+                <input class="form-control" type="number" name="writing_score" id="writing_score" placeholder="Enter your Writing score" min="0" max="100" value="{{ request.form.get('writing_score', '') }}" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="reading_score"><i class="fa-solid fa-book"></i> Reading Score out of 100</label>
+                <input class="form-control" type="number" name="reading_score" id="reading_score" placeholder="Enter your Reading score" min="0" max="100" value="{{ request.form.get('reading_score', '') }}" required />
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg" type="submit">
+                    <i class="fa-solid fa-bolt"></i> Predict Math Score
+                </button>
+            </div>
+        </form>
+        {% if result is defined %}
+            <div class="result-box">
+                <span style="font-size:1.1rem; font-weight:500;">
+                    <i class="fa-solid fa-bullseye"></i> Predicted Math Score:
+                </span><br>
+                <span style="font-size:2.2rem; font-weight:700;">{{ result }}</span>
+                <div style="font-size:0.9rem; margin-top:10px; color:#2ecc71;">
+                    <i class="fa-solid fa-circle-check"></i> Prediction completed successfully
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span>Made with <i class="fa-solid fa-heart" style="color:#e74c3c;"></i> by Mahesh Javiniki &middot; <a href="https://github.com/mahesh-javiniki/end-to-end-ml-project-with-deployment" target="_blank">GitHub</a></span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
